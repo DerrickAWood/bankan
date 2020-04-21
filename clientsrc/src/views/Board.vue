@@ -1,13 +1,16 @@
 <template>
   <div class="board">
     <h1 v-if="board.title">{{board.title}}</h1>
+    <h2 v-if="board.description">{{board.description}}</h2>
     <h1 v-else>Loading...</h1>
-    <board-details></board-details>
+    <create-List></create-List>
+    <List></List>
   </div>
 </template>
 
 <script>
-import BoardDetails from "../components/BoardDetails"
+import CreateList from "../components/CreateList"
+import List from "../components/List"
 export default {
   name: "board",
   data(){
@@ -26,6 +29,6 @@ export default {
   },
   props: ["boardId"],
   methods: {},
-  components: { BoardDetails}
+  components: { List, CreateList }
 };
 </script>
