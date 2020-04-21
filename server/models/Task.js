@@ -11,9 +11,9 @@ const Task = new Schema({
         type: String,
         required: true
     },
-    boardId: {
+    listId: {
         type: ObjectId,
-        ref: 'Board',
+        ref: 'list',
         required: true
     }
 }, {

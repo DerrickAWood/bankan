@@ -7,6 +7,7 @@ import {
 import {
   listService
 } from "../services/ListService";
+import {taskService } from "../services/TaskService"
 
 
 
@@ -18,6 +19,7 @@ export class ListController extends BaseController {
       .use(auth0provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .get('/:id', this.getById)
+      .get('/:id/task', this.getTaskByListId)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -31,6 +33,15 @@ export class ListController extends BaseController {
       return res.send(data)
     } catch (err) {
       next(err)
+    }
+  }
+
+  async getTaskByListId(req, res, next){
+    try {
+      let list = await taskService.find({listId: req.params.id})
+      res.send(list)
+    } catch (error) {
+      
     }
   }
 
