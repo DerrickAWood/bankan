@@ -1,12 +1,26 @@
 <template>
   <div class="board-details">
-    <h1>{{board.title}}</h1>
+  <p>something</p>
   </div>
 </template>
+
 
 <script>
 export default {
   name: "board-details",
-  props: [""]
-}
+  data(){
+    return{
+
+    }
+  },
+  computed: {
+    board() {
+      //FIXME This does not work on page reload because the activeBoard is empty in the store
+      return this.$store.state.activeBoard;
+    }
+  },
+  props: ["boardId"],
+  methods: {},
+  components: {}
+};
 </script>
