@@ -14,8 +14,7 @@ export class BoardsController extends BaseController {
       .use(auth0provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .get('/:id', this.getById)
-      .get('/:id/list', this.getBoardById)
-      .post('/:id/list', this.createList)
+      .get('/:id/list', this.getListByBoardId)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -31,9 +30,9 @@ export class BoardsController extends BaseController {
     catch (err) { next(err) }
   }
 
-  async getBoardById(req, res, next){
+  async getListByBoardId(req, res, next){
     try {
-      let board = await listService.find({board: req.params.id})
+      let board = await listService.find({boardId: req.params.id})
       res.send(board)
     } catch (error) {
       
@@ -55,15 +54,6 @@ export class BoardsController extends BaseController {
     } catch (error) { next(error) }
   }
 
-  async createList(req,res,next){
-    try {
-      req.body.creatorEmail = req.userInfo.email
-      let data = await listService.createList(req.body)
-      return res.send(data)
-    } catch (error) {
-      next(error)
-    }
-  }
 
   async edit(req, res, next) {
     try {

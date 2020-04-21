@@ -25,10 +25,6 @@ class ListService {
     return data
   }
 
-  async createList(rawData){
-    let data = await dbContext.Lists.create(rawData)
-    return data
-  }
 
   async edit(id, userEmail, update) {
     let data = await dbContext.Lists.findOneAndUpdate({ _id: id, creatorEmail: userEmail }, update, { new: true })
