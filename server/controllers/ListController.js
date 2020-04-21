@@ -28,6 +28,7 @@ export class ListController extends BaseController {
     }
     catch (err) { next(err) }
   }
+  
 
   async getById(req, res, next) {
     try {
