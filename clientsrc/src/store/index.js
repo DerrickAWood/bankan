@@ -34,6 +34,7 @@ export default new Vuex.Store({
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
+      debugger
       api.defaults.headers.authorization = "";
     },
     async getProfile({ commit }) {
@@ -52,9 +53,12 @@ export default new Vuex.Store({
       api.get('boards')
         .then(res => {
           commit('setBoards', res.data)
+          console.log(res.data);
+          
         })
     },
     addBoard({ commit, dispatch }, boardData) {
+      console.log(boardData);
       api.post('boards', boardData)
         .then(serverBoard => {
           dispatch('getBoards')

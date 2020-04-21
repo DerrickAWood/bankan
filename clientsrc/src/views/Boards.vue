@@ -1,18 +1,15 @@
 <template>
   <div class="boards">
     WELCOME TO THE BOARDS!!!
-    <form @submit.prevent="addBoard">
-      <input type="text" placeholder="title" v-model="newBoard.title" required />
-      <input type="text" placeholder="description" v-model="newBoard.description" />
-      <button type="submit">Create Board</button>
-    </form>
+    <create-board></create-board>
     <div v-for="board in boards" :key="board.id">
-      <router-link :to="{name: 'board', params: {boardId: board.id}}">{{}}"{{board.title}}</router-link>
+      <router-link :to="{name: 'board', params: {boardId: board.id}}">{{board.title}}</router-link>
     </div>
   </div>
 </template>
 
 <script>
+import CreateBoard from "../components/CreateBoard"
 export default {
   name: "boards",
   mounted() {
@@ -20,10 +17,7 @@ export default {
   },
   data() {
     return {
-      newBoard: {
-        title: "",
-        description: ""
-      }
+      
     };
   },
   computed: {
@@ -32,10 +26,7 @@ export default {
     }
   },
   methods: {
-    addBoard() {
-      this.$store.dispatch("addBoard", this.newBoard);
-      this.newBoard = { title: "", description: "" };
-    }
-  }
+  },
+  components: { CreateBoard}
 };
 </script>
