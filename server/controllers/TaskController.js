@@ -10,6 +10,9 @@ import {
 import {
   taskService
 } from "../services/TaskService"
+import {
+  commentService
+} from "../services/CommentService"
 
 
 
@@ -21,6 +24,7 @@ export class TaskController extends BaseController {
       .use(auth0provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .get('/:id', this.getById)
+      .get('/:id/comments', this.getCommentsByTaskId)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -42,6 +46,17 @@ export class TaskController extends BaseController {
         boardId: req.params.id
       })
       res.send(board)
+    } catch (error) {
+
+    }
+  }
+
+  async getCommentsByTaskId(req, res, next) {
+    try {
+      let comment = await commentService.find({
+        taskId: req.params.id
+      })
+      res.send(comment)
     } catch (error) {
 
     }
