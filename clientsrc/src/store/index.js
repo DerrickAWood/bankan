@@ -20,7 +20,8 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     list: [],
-    activeList: {}
+    activeList: {},
+    tasks: []
   },
   mutations: {
     setUser(state, user) {
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     },
     setActiveList(state, list) {
       state.activeList = list
+    },
+    setTasks(state, tasks) {
+      state.tasks = tasks
     }
   },
   actions: {

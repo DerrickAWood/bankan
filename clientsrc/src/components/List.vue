@@ -1,6 +1,8 @@
 <template>
-  <div class="list">
-    <p>{{listData.title}}</p>
+  <div class="container-fluid">
+    <div class="row">
+      <p>{{listData.title}}</p>
+    </div>
   </div>
 </template>
 
