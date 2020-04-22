@@ -39,7 +39,7 @@ class TaskService {
         let data = await dbContext.Tasks.findOneAndUpdate({
             _id: id,
             creatorEmail: userEmail
-        }, update, {
+        }, update.oldTaskId, {
             new: true
         })
         if (!data) {

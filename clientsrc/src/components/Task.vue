@@ -28,6 +28,7 @@
           </div>
           <div class="modal-body">
             <button
+              @click="moveTask(list.id)"
               class="btn btn-sm btn-primary"
               v-for="list in lists"
               :key="list.id"
@@ -73,7 +74,17 @@ export default {
     }
   },
   props: ["taskData", "listData"],
-  methods: {},
+  methods: {
+    moveTask(listId) {
+      let newObject = {
+        oldListId: this.task.listId,
+        oldTaskId: this.taskData,
+        listId
+      };
+
+      this.$store.dispatch("moveTask", newObject);
+    }
+  },
   components: {
     Comment,
     CreateComment,

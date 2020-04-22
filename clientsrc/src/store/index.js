@@ -144,7 +144,6 @@ export default new Vuex.Store({
       commit,
       dispatch
     }, task) {
-      debugger
       api.post('task', task)
         .then(res => {
           dispatch('getTask', task.listId)
@@ -161,6 +160,14 @@ export default new Vuex.Store({
         listId: listId
       })
       console.log(res.data)
+    },
+
+    async moveTask({
+      commit,
+      dispatch
+    }, newObject) {
+      let res = await api.put('task/' + newObject.oldTaskId.id, newObject)
+
     },
 
     async addComment({
