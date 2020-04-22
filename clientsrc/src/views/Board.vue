@@ -5,7 +5,7 @@
     <h1 v-else>Loading...</h1>
     <create-List :boardData="board"></create-List>
     <div class="row">
-      <List class="col-3" v-for="lists in list" :listData="lists" :key="lists._id"></List>
+      <List class="col-3" v-for="list in lists" :listData="list" :key="list._id"></List>
     </div>
   </div>
 </template>
@@ -27,8 +27,8 @@ export default {
       //FIXME This does not work on page reload because the activeBoard is empty in the store
       return this.$store.state.activeBoard;
     },
-    list() {
-      return this.$store.state.list;
+    lists() {
+      return this.$store.state.lists;
     }
   },
   props: ["boardId"],

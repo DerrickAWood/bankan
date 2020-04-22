@@ -19,7 +19,7 @@ export default new Vuex.Store({
     user: {},
     boards: [],
     activeBoard: {},
-    list: [],
+    lists: [],
     activeList: {},
     tasks: {},
     activeTask: {},
@@ -36,8 +36,8 @@ export default new Vuex.Store({
     setActiveBoard(state, board) {
       state.activeBoard = board
     },
-    setList(state, list) {
-      state.list = list
+    setLists(state, lists) {
+      state.lists = lists
     },
     setActiveList(state, list) {
       state.activeList = list
@@ -124,7 +124,7 @@ export default new Vuex.Store({
     }, boardId) {
       api.get('boards/' + boardId + '/list')
         .then(res => {
-          commit('setList', res.data)
+          commit('setLists', res.data)
           console.log(res.data);
         })
     },
@@ -136,7 +136,7 @@ export default new Vuex.Store({
       console.log(listId.boardId, "this from the store");
       api.post('list/', listId)
         .then(serverBoard => {
-          dispatch('getList')
+          dispatch('getLists')
         })
     },
 
@@ -181,6 +181,13 @@ export default new Vuex.Store({
         taskId: taskId
       })
       console.log(res.data)
+    },
+
+    async deleteComment({
+      commit,
+      dispatch
+    }, commentId) {
+      let res = await api.delete('comment/' + commentId)
     }
 
 
