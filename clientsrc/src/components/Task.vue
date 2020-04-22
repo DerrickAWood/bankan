@@ -2,13 +2,13 @@
   <div class="container-fluid">
     <p>{{taskData.title}}</p>
     <create-comment :taskData="taskData"></create-comment>
-    <comments v-for="comment in comments" :key="comment.id" :commentData="comment"></comments>
+    <comment v-for="comment in comments" :key="comment.id" :commentData="comment"></comment>
   </div>
 </template>
 
 
 <script>
-import Comments from "./Comments";
+import Comment from "./Comment";
 import CreateComment from "./CreateComment";
 export default {
   name: "task",
@@ -24,13 +24,13 @@ export default {
       return this.$store.state.activeTask;
     },
     comments() {
-      return this.$store.state.comments[this.taskData.id];
+      return this.$store.state.comments[this.taskData.id] || [];
     }
   },
   props: ["taskData"],
   methods: {},
   components: {
-    Comments,
+    Comment,
     CreateComment
   }
 };

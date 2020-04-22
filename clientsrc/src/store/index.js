@@ -50,7 +50,8 @@ export default new Vuex.Store({
       state.activeTask = task
     },
     setComments(state, comments) {
-      state.comments = comments
+      //state.comments = comments
+      Vue.set(state.comments, comments.taskId, comments.data)
     },
     setActiveComment(state, comment) {
       state.activeComment = comment
