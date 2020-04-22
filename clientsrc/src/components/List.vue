@@ -12,7 +12,7 @@ export default {
     return {};
   },
   mounted() {
-    this.$store.dispatch("getList", this.$route.params.boardId);
+    this.$store.dispatch("getList", this.$route.params.listId);
   },
   computed: {
     list() {

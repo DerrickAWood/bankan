@@ -29,23 +29,28 @@ export default new Vuex.Store({
     setBoards(state, boards) {
       state.boards = boards
     },
-    setActiveBoard(state, board){
+    setActiveBoard(state, board) {
       state.activeBoard = board
     },
-    setActiveList(state, list){
+    setList(state, list) {
+      state.list = list
+    },
+    setActiveList(state, list) {
       state.activeList = list
     }
   },
   actions: {
     //#region -- AUTH STUFF --
-    setBearer({ }, bearer) {
+    setBearer({}, bearer) {
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
       debugger
       api.defaults.headers.authorization = "";
     },
-    async getProfile({ commit }) {
+    async getProfile({
+      commit
+    }) {
       try {
         let res = await api.get("/profile")
         commit("setUser", res.data)
@@ -57,15 +62,21 @@ export default new Vuex.Store({
 
 
     //#region -- BOARDS --
-    getBoards({ commit, dispatch }) {
+    getBoards({
+      commit,
+      dispatch
+    }) {
       api.get('boards')
         .then(res => {
           commit('setBoards', res.data)
           console.log(res.data);
-          
+
         })
     },
-    addBoard({ commit, dispatch }, boardData) {
+    addBoard({
+      commit,
+      dispatch
+    }, boardData) {
       console.log(boardData);
       api.post('boards', boardData)
         .then(serverBoard => {
@@ -73,32 +84,41 @@ export default new Vuex.Store({
         })
     },
 
-    getBoard({commit,dispatch}, boardId){
-      api.get('boards/'+ boardId)
+    getBoard({
+      commit,
+      dispatch
+    }, boardId) {
+      api.get('boards/' + boardId)
         .then(res => {
           commit('setActiveBoard', res.data)
           console.log(res.data);
-          
+
         })
-      },
+    },
     //#endregion
 
 
     //#region -- LISTS --
 
-    getList({commit,dispatch}, listId){
-      api.get('list/'+ listId)
+    getList({
+      commit,
+      dispatch
+    }, boardId) {
+      api.get('boards/' + boardId + '/list')
         .then(res => {
-          commit('setActiveList', res.data)
+          commit('setList', res.data)
           console.log(res.data);
         })
     },
 
-    addList({ commit, dispatch }, boardId) {
-      console.log();
-      api.post('list/', boardId)
+    addList({
+      commit,
+      dispatch
+    }, listId) {
+      console.log(listId.boardId, "this from the store");
+      api.post('list/', listId)
         .then(serverBoard => {
-          dispatch('getlist')
+          dispatch('getList')
         })
     },
 

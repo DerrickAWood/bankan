@@ -4,7 +4,6 @@
       <input type="text" placeholder="title" v-model="newList.title" required />
       <button type="submit">Create List</button>
     </form>
-    
   </div>
 </template>
 
@@ -13,20 +12,23 @@
 // ANCHOR find out how to pass board id with the list
 export default {
   name: "create-list",
-  data(){
-    return{
-    newList: {
-        title: ""
+  props: ["boardData"],
+  data() {
+    return {
+      newList: {
+        title: "",
+        boardId: this.$route.params.boardId
       }
-    }
+    };
   },
   methods: {
     addList() {
+      console.log(this.newList);
       this.$store.dispatch("addList", this.newList);
-      this.newList = { title: ""};
+      this.newList = { title: "" };
     }
-  },
   }
+};
 </script>
 
 <style></style>
