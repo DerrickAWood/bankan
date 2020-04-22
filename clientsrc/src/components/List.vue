@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-  <p>{{List.title}}</p>
+    <p>{{listData.title}}</p>
   </div>
 </template>
 
@@ -8,22 +8,20 @@
 <script>
 export default {
   name: "list",
-  data(){
-    return{
-
-    }
+  data() {
+    return {};
   },
-  mounted(){
-    this.$store.dispatch("getList", this.$route.params.listId)
+  mounted() {
+    this.$store.dispatch("getList", this.$route.params.boardId);
   },
   computed: {
-    board() {
+    list() {
       //FIXME This does not work on page reload because the activeBoard is empty in the store
       return this.$store.state.activeList;
     }
   },
-  props: ["listId"],
-  methods: {},
+  props: ["listData"],
+  methods: {}
 };
 </script>
 
