@@ -4,7 +4,9 @@
     <h2 v-if="board.description">{{board.description}}</h2>
     <h1 v-else>Loading...</h1>
     <create-List :boardData="board"></create-List>
-    <List class="col-3" v-for="lists in list" :listData="lists" :key="lists._id"></List>
+    <div class="row">
+      <List class="col-3" v-for="lists in list" :listData="lists" :key="lists._id"></List>
+    </div>
   </div>
 </template>
 
