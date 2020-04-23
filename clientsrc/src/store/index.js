@@ -167,7 +167,9 @@ export default new Vuex.Store({
       dispatch
     }, newObject) {
       let res = await api.put('task/' + newObject.oldTaskId, newObject)
-      dispatch('getList', newObject)
+      dispatch('getTask', newObject.oldListId)
+      dispatch('getTask', newObject.listId)
+
       // go get the tasks for each list again
     },
 
