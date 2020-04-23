@@ -1,9 +1,13 @@
 <template>
-  <div class="board">
-    <h1 v-if="board.title">{{board.title}}</h1>
-    <h2 v-if="board.description">{{board.description}}</h2>
-    <h1 v-else>Loading...</h1>
-    <create-List :boardData="board"></create-List>
+  <div class="board container-fluid">
+    <div class="row">
+      <div class="col-12 bg-info">
+        <h1 v-if="board.title">{{board.title}}</h1>
+        <h2 v-if="board.description">{{board.description}}</h2>
+        <h1 v-else>Loading...</h1>
+      </div>
+    </div>
+    <create-List class="mt-3" :boardData="board"></create-List>
     <div class="row">
       <List class="col-3" v-for="list in lists" :listData="list" :key="list._id"></List>
     </div>
