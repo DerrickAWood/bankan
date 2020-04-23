@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid">
     <p>{{listData.title}}</p>
+    <button class="btn btn-sm btn-danger" @click="deleteList(listData)">DELETE LIST</button>
     <create-task :listData="listData"></create-task>
     <Task v-for="task in tasks" :key="task.id" :taskData="task"></Task>
   </div>
@@ -29,7 +30,11 @@ export default {
     }
   },
   props: ["listData"],
-  methods: {},
+  methods: {
+    deleteList(listData) {
+      this.$store.dispatch("deleteList", listData);
+    }
+  },
   components: {
     Task,
     CreateTask

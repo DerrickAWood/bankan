@@ -7,7 +7,11 @@
         class="border border-dark m-2"
         :to="{name: 'board', params: {boardId: board.id}}"
       >{{board.title}}</router-link>
-      <button class="btn btn-sm btn-danger" @click="deleteBoard(board)">DELETE</button>
+      <button
+        class="btn btn-sm btn-danger"
+        v-if="$auth.userInfo.email == board.creatorEmail"
+        @click="deleteBoard(board)"
+      >DELETE</button>
     </div>
   </div>
 </template>

@@ -108,7 +108,7 @@ export default new Vuex.Store({
       api.get('boards/' + boardId)
         .then(res => {
           commit('setActiveBoard', res.data)
-          console.log(res.data);
+          console.log(boardId);
 
         })
     },
@@ -117,8 +117,8 @@ export default new Vuex.Store({
       commit,
       dispatch
     }, board) {
-      debugger
       let res = await api.delete('boards/' + board)
+      dispatch('getBoards')
     },
     //#endregion
 
@@ -143,8 +143,16 @@ export default new Vuex.Store({
       console.log(listId.boardId, "this from the store");
       api.post('list/', listId)
         .then(serverBoard => {
-          dispatch('getList')
+          dispatch('getList', listId.boardId)
         })
+    },
+
+    async deleteList({
+      commit,
+      dispatch
+    }, listData) {
+      let res = await api.delete('list/' + listData.id)
+      dispatch('getList', listData.boardId)
     },
 
     addTask({
@@ -178,6 +186,14 @@ export default new Vuex.Store({
       dispatch('getTask', newObject.listId)
 
       // go get the tasks for each list again
+    },
+
+    async deleteTask({
+      commit,
+      dispatch
+    }, taskData) {
+      let res = await api.delete('task/' + taskData.id)
+      dispatch('getTask', taskData.listId)
     },
 
     async addComment({

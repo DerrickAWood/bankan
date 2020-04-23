@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     addList() {
-      console.log(this.newList);
+      console.log(this.newList, "this is from addList");
       this.$store.dispatch("addList", this.newList);
       this.newList = { title: "" };
     }

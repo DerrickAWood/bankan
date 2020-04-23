@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid">
     <p>{{taskData.title}}</p>
+    <button class="btn btn-sm btn-danger" @click="deleteTask(taskData)">DELETE TASK</button>
     <!-- Button trigger modal -->
     <button
       type="button"
@@ -31,16 +32,13 @@
           </div>
           <div class="modal-body">
             <button
-              @click="moveTask(list.id)"
+              data-dismiss="modal"
+              @click.prevent="moveTask(list.id)"
               class="btn btn-sm btn-primary"
               v-for="list in lists"
               :key="list.id"
               :listData="list"
             >{{list.title}}</button>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -88,6 +86,11 @@ export default {
 
       this.$store.dispatch("moveTask", newObject);
       //this.$store.dispatch("getList", newObject);
+    },
+
+    deleteTask(taskData) {
+      debugger;
+      this.$store.dispatch("deleteTask", taskData);
     }
   },
   components: {
