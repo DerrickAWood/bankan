@@ -136,7 +136,7 @@ export default new Vuex.Store({
       console.log(listId.boardId, "this from the store");
       api.post('list/', listId)
         .then(serverBoard => {
-          dispatch('getLists')
+          dispatch('getList')
         })
     },
 
@@ -166,8 +166,9 @@ export default new Vuex.Store({
       commit,
       dispatch
     }, newObject) {
-      let res = await api.put('task/' + newObject.oldTaskId.id, newObject)
-
+      let res = await api.put('task/' + newObject.oldTaskId, newObject)
+      dispatch('getList', newObject)
+      // go get the tasks for each list again
     },
 
     async addComment({

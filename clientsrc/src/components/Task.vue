@@ -6,13 +6,13 @@
       type="button"
       class="btn btn-sm btn-primary"
       data-toggle="modal"
-      data-target="#exampleModal"
+      :data-target="'#exampleModal-'+taskData.id"
     >Move Task</button>
 
     <!-- Modal -->
     <div
       class="modal fade"
-      id="exampleModal"
+      :id="'exampleModal-'+taskData.id"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -21,7 +21,10 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Where do you want to move this task?</h5>
+            <h5
+              class="modal-title"
+              id="exampleModalLabel"
+            >Where do you want to move task {{taskData.title}}?</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -76,13 +79,16 @@ export default {
   props: ["taskData", "listData"],
   methods: {
     moveTask(listId) {
+      debugger;
       let newObject = {
-        oldListId: this.task.listId,
-        oldTaskId: this.taskData,
+        oldListId: this.taskData.listId,
+        oldTaskId: this.taskData._id,
         listId
       };
+      console.log(newObject.oldTaskId);
 
       this.$store.dispatch("moveTask", newObject);
+      //this.$store.dispatch("getList", newObject);
     }
   },
   components: {
