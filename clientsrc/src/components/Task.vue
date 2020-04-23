@@ -79,7 +79,6 @@ export default {
   props: ["taskData", "listData"],
   methods: {
     moveTask(listId) {
-      debugger;
       let newObject = {
         oldListId: this.taskData.listId,
         oldTaskId: this.taskData._id,

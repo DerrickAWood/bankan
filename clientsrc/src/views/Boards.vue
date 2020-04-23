@@ -7,6 +7,7 @@
         class="border border-dark m-2"
         :to="{name: 'board', params: {boardId: board.id}}"
       >{{board.title}}</router-link>
+      <button class="btn btn-sm btn-danger" @click="deleteBoard(board)">DELETE</button>
     </div>
   </div>
 </template>
@@ -24,9 +25,16 @@ export default {
   computed: {
     boards() {
       return this.$store.state.boards;
+      return this.$store.state.activeBoard;
     }
   },
-  methods: {},
+  methods: {
+    deleteBoard(board) {
+      debugger;
+      //this.$route.push({ name: "Boards" });
+      this.$store.dispatch("deleteBoard", board.id);
+    }
+  },
   components: { CreateBoard }
 };
 </script>

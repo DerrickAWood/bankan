@@ -63,7 +63,6 @@ export default new Vuex.Store({
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
-      debugger
       api.defaults.headers.authorization = "";
     },
     async getProfile({
@@ -112,6 +111,14 @@ export default new Vuex.Store({
           console.log(res.data);
 
         })
+    },
+
+    async deleteBoard({
+      commit,
+      dispatch
+    }, board) {
+      debugger
+      let res = await api.delete('boards/' + board)
     },
     //#endregion
 
