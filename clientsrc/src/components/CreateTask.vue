@@ -1,8 +1,8 @@
 <template>
   <div class="create-task">
     <form @submit.prevent="addTask">
-      <input type="text" placeholder="title" v-model="newTask.title" required />
-      <button type="submit">Create Task</button>
+      <input type="text" placeholder="enter task" v-model="newTask.title" required />
+      <button class="btn btn-sm btn-info m-2" type="submit">Create Task</button>
     </form>
   </div>
 </template>

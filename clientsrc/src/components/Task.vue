@@ -1,11 +1,13 @@
 <template>
   <div class="container-fluid">
     <p>{{taskData.title}}</p>
-    <button class="btn btn-sm btn-danger" @click="deleteTask(taskData)">DELETE TASK</button>
+    <button class="btn btn-sm btn-danger m-2" @click="deleteTask(taskData)">
+      <small>DELETE TASK</small>
+    </button>
     <!-- Button trigger modal -->
     <button
       type="button"
-      class="btn btn-sm btn-primary"
+      class="btn btn-sm btn-primary m-2"
       data-toggle="modal"
       :data-target="'#exampleModal-'+taskData.id"
     >Move Task</button>

@@ -2,7 +2,7 @@
   <div>
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required />
-      <button type="submit">Create List</button>
+      <button class="btn btn-sm btn-primary" type="submit">Create List</button>
     </form>
   </div>
 </template>

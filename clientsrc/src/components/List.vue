@@ -1,9 +1,11 @@
 <template>
   <div class="container-fluid">
-    <p>{{listData.title}}</p>
-    <button class="btn btn-sm btn-danger" @click="deleteList(listData)">DELETE LIST</button>
-    <create-task :listData="listData"></create-task>
-    <Task v-for="task in tasks" :key="task.id" :taskData="task"></Task>
+    <div class="card m-2 shadow-lg">
+      <p>{{listData.title}}</p>
+      <button class="btn btn-sm btn-danger m-2" @click="deleteList(listData)">DELETE LIST</button>
+      <create-task :listData="listData"></create-task>
+      <Task class="border m-2" v-for="task in tasks" :key="task.id" :taskData="task"></Task>
+    </div>
   </div>
 </template>
 
