@@ -91,7 +91,6 @@ export default {
     },
 
     deleteTask(taskData) {
-      debugger;
       this.$store.dispatch("deleteTask", taskData);
     }
   },
